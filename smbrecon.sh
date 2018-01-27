@@ -15,5 +15,7 @@ cat /tmp/smbrecon.results | grep open | cut -d " " -f 2 > /tmp/smb.hosts
 nmap -n -v -p139,445 --script=smb-os-discovery -i smb.hosts -oG /tmp/smb.nmap
 cat /tmp/smb.nmap | grep Windows | cut -d " " -f 2 > /tmp/smb.windows
 
-cat /tmp/smb.windows
+for SCRIPT in $(cat smb-vuln-list); do
+   nmap -nv --script=$SCRIPT -p445 -i /tmp/smb.windows -oA results/$SCRIPT
+done
 
