@@ -1,6 +1,7 @@
 #!/bin/bash
 # will do an aggresive nmap scan and save
 
+
 #check target list parameter
 if [ -z "$1" ]; then
 echo "input file required"
